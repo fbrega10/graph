@@ -1,19 +1,19 @@
-package graph;
+package graph.model;
+
+import graph.inter.GraphInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class Graph {
+public class Graph implements GraphInterface {
 
     private List<Vertex> vertexes;
     private List<Color> colorList;
-    private List<Vertex> ancestorList;
     private PriorityQueue<Vertex> grayVertexes;
 
     public Graph(){
         colorList = new ArrayList<>();
-        ancestorList = new ArrayList<>();
         grayVertexes = new PriorityQueue<>();
     }
 
@@ -22,11 +22,18 @@ public class Graph {
         vertexes = list;
         if (list.isEmpty())
             return;
-        colorList.add(Color.WHITE);
-        ancestorList.add(null);
-        for (int i = 1; i < list.size(); ++i){
+        for (int i = 0; i < list.size(); ++i){
             colorList.add(Color.WHITE);
-            ancestorList.add(vertexes.get(i));
         }
+    }
+
+    public void addVertex(Vertex v){
+        this.vertexes.add(v);
+        this.colorList.add(Color.WHITE);
+    }
+
+    @Override
+    public List<Vertex> getVertexes() {
+        return this.vertexes;
     }
 }

@@ -1,4 +1,4 @@
-package graph;
+package graph.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,20 +13,25 @@ public class Vertex<T> implements Serializable {
        this.content = t ;
        this.adjacentList = new ArrayList<>();
     }
+
     public boolean addAdjacent(Vertex v){
-        if (!this.adjacentList.contains(v)){
-            this.adjacentList.add(v);
-            return true;
-        }
-        return false;
+        if (v == null)
+            return false;
+        return this.adjacentList.add(v);
     }
 
     public boolean removeAdjacent(Vertex v){
-        if (this.adjacentList.contains(v)){
-            this.adjacentList.remove(v);
-            return true;
-        }
-        return false;
+        if (v == null)
+            return false;
+        return this.adjacentList.remove(v);
     }
 
+    public List<Vertex> getAdjacents(){
+        return this.adjacentList;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
